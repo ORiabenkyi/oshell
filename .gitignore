@@ -50,3 +50,17 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+libft/libft.a
+libft.a
+.vscode
+a.out
+*.o
+minishell
+infile
+outfile
+outfile2
+build
+main
+
+.vscode
