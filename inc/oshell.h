@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:13:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 18:09:02 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:00:06 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	handle_signals_global(void);
 */
 
 void	free_all(t_data *data);
+void	free_all_exit(t_data *data);
 void	exit_shell(t_data *data, int exit_number);
 
 /*

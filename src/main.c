@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:14:06 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 14:49:07 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:53:14 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(int counter, char *arg[], char *envr[])
 		{
 			add_history(data.user_input);
 			process_execute(&data);
+			free_all(&data);
 		}
-		free_all(&data);
 	}
 	exit_shell(&data, 0);
 	return (0);

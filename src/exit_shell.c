@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 15:03:45 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:01:00 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
 
 void	exit_shell(t_data *data, int exit_number)
 {
-	if (data)
-	{
-		free_all(data);
-	}
+	free_all_exit(data);
 	ft_printf("потрібна очистка оточення\n");
 	data = NULL;
 	exit(exit_number);

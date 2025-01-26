@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 17:25:05 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/01/26 16:28:00 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	split_on_substring(t_data *data)
 	int		i;
 	char	symbol;
 
-	i = 0;
 	token = data->begin_token;
 	while (token)
 	{
+		i = 0;
 		while (token->tokens[i])
 		{
 			if (token->tokens[i] == '\'')
@@ -45,7 +45,7 @@ int	split_on_substring(t_data *data)
 				i++;
 				continue ;
 			}
-			split_token(token, i, symbol);
+			token = split_token(token, i, symbol);
 			break ;
 		}
 		token = token->next;

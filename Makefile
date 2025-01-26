@@ -6,7 +6,7 @@
 #    By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 12:53:01 by oriabenk          #+#    #+#              #
-#    Updated: 2025/01/25 17:39:43 by oriabenk         ###   ########.fr        #
+#    Updated: 2025/01/26 11:27:17 by oriabenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT =  $(LIB_DIR)/libft.a
 
 INCLUDES_FLAGS = $(LIBFT) -I inc/ 
 
-OBJ_PATH = build
+OBJ_PATH = obj
 
 SRC_DIR = src
 FILES_SRC := \
