@@ -68,7 +68,7 @@ int		is_correct_substring(char *line, int i);
 
 void	init_list(t_data *data);
 int		split_on_substring(t_data *data);
-void	split_token(t_token *data, int position, char symbol);
+t_token *split_token(t_token *data, int position, char symbol);
 t_token	*create_list(char *string);
 t_token	*create_token(char *string, int fulls);
 t_token	*add_token_after(t_token	*list, t_token	*add_in_list);

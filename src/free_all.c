@@ -27,7 +27,7 @@ void	free_all(t_data *data)
 		while (current)
 		{
 			next = current->next;
-			ft_printf(" %s\n", current->tokens);
+			ft_printf(" %s\t!\t%d\n", current->tokens, ft_strlen(current->tokens));
 			//free(current->tokens);
 			//current->tokens = NULL;
 			//free(current);
