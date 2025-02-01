@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 15:03:57 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:27:13 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 	 чи передати на виконання якщо строка коректна
 */
 
+void static	print_tokens(t_token *token)
+{
+	while (token)
+	{
+		ft_printf("%s\n", token->tokens, token->full);
+		token = token->next;
+	}
+}
+
 void	process_execute(t_data *data)
 {
 	if (!is_valid_input(data->user_input))
@@ -27,4 +36,7 @@ void	process_execute(t_data *data)
 	if (!data->begin_token)
 		return ;
 	split_on_substring(data);
+	split_on_pipe(data);
+	split_on_redirect(data);
+	print_tokens(data->begin_token);
 }

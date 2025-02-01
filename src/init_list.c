@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 12:09:50 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:30:07 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	init_list(t_data *data)
 	data->begin_token = create_list(data->user_input);
 	if (!data->begin_token)
 		error_allocate_list();
+	//ft_printf("LIST create\n");
 }

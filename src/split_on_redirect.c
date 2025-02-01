@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_on_substring.c                               :+:      :+:    :+:   */
+/*   split_on_redirect.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/01 12:29:55 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:27:10 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 /*
 функція утворюю лист з строками де зберігається підстроки.
 розбиття відбувається 
-	за подвійними лапками
-	за одинарними лапками
-	за дужками
-	за або (||) та (&&)
-	за пайпами (|)
+	// за подвійними лапками
+	// за одинарними лапками
+	// за дужками
+	// за або (||) та (&&)
+	// за пайпами (|)
 	за перенаправленням (>>, <<, >, <)
 Значення що повертається слугує для визначення що розбиття пройшло коректно
 */
 
-int	split_on_substring(t_data *data)
+int	split_on_redirect(t_data *data)
 {
 	t_token	*token;
 	int		i;
@@ -36,10 +36,10 @@ int	split_on_substring(t_data *data)
 		i = 0;
 		while (token->tokens[i])
 		{
-			if (token->tokens[i] == '\'')
-				symbol = '\'';
-			else if (token->tokens[i] == '\"')
-				symbol = '\"';
+			if (token->tokens[i] == '>')
+				symbol = '>';
+			else if (token->tokens[i] == '<')
+				symbol = '<';
 			else if (i++ >= 0)
 				continue ;
 			token = split_token(token, i, symbol);
@@ -47,6 +47,6 @@ int	split_on_substring(t_data *data)
 		}
 		token = token->next;
 	}
-	//ft_printf("SPLITED\n");
+	ft_printf("SPLITED\n");
 	return (1);
 }

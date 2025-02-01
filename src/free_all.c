@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/26 16:21:02 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:23:08 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,60 +16,49 @@
 функція для очистки всіх посилань в структурі
 */
 
-void	free_all(t_data *data)
+void	free_tokens(t_token *token)
 {
-	t_token	*current;
-	t_token	*next;
+	t_token	*tmp;
 
-	current = data->begin_token;
-	if (current)
+	while (token)
 	{
-		while (current)
-		{
-			next = current->next;
-			ft_printf(" %s!\t%d\n", current->tokens, ft_strlen(current->tokens));
-			free(current->tokens);
-			current->tokens = NULL;
-			free(current);
-			current = next;
-		}
-		ft_printf(" //не забуваємо про очистку пам'яті\n");
-	}
-	if (data->user_input)
-	{
-		free(data->user_input);
-		data->user_input = NULL;
+		tmp = token;
+		if (token->tokens)
+			free(token->tokens);
+		token = token->next;
+		free(tmp);
 	}
 }
 
+void	free_all(t_data *data)
+{
+	if (!data)
+		return ;
+	if (data->user_input)
+		free(data->user_input);
+	data->piped = 0;
+	data->pid = -1;
+	free_tokens(data->begin_token);
+}
 
 void	free_all_exit(t_data *data)
 {
-	t_token	*current;
-	t_token	*next;
+	int	i;
 
-	current = data->begin_token;
-	if (current)
+	ft_printf(" //не забуваємо про очистку пам'яті\n");
+	if (!data)
+		return ;
+	if (data->env)
 	{
-		while (current)
+		i = 0;
+		while (data->env[i])
 		{
-			ft_printf(" Outside\n");
-			next = current->next;
-			if (current->tokens != NULL)
-			{
-				ft_printf(" %s!\t%d\n", current->tokens, ft_strlen(current->tokens));
-				//free((void *)current->tokens);
-			}
-			ft_printf(" Inside\n");
-			current->tokens = NULL;
-			//free(current);
-			current = next;
+			free(data->env[i]);
+			i++;
 		}
-		ft_printf("EXIT -> //не забуваємо про очистку пам'яті\n");
+		free(data->env);
+		ft_printf("ENV clean\n");
 	}
-	if (data->user_input)
-	{
-		free(data->user_input);
-		data->user_input = NULL;
-	}
+	//free_all(data);
+	ft_printf("EXIT -> //не забуваємо про очистку пам'яті\n");
 }
