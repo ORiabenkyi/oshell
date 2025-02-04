@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_token.c                                      :+:      :+:    :+:   */
+/*   split_on_herdoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/04 14:11:39 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:12:48 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,39 @@
 /*
 функція утворюю лист з строками де зберігається підстроки.
 розбиття відбувається 
-	за подвійними лапками
-	за одинарними лапками
-	за дужками
-	за або (||) та (&&)
-	за пайпами (|)
+	// за подвійними лапками
+	// за одинарними лапками
+	// за дужками
+	// за або (||) та (&&)
+	// за пайпами (|)
 	за перенаправленням (>>, <<, >, <)
 Значення що повертається слугує для визначення що розбиття пройшло коректно
 */
 
-t_token	*split_token(t_token *d, int pos, int size)
+int	split_on_herdoc(t_data *data)
 {
+	t_token	*token;
 	int		i;
-	t_token	*tmp;
+	int		size;
 
-	i = pos;
-	tmp = create_token(ft_substr(d->tokens, i, size), 0);
-	add_token_after(d, tmp);
-	if (d->tokens[i + 1] != '\0')
+	token = data->begin_token;
+	while (token)
 	{
-		tmp = create_token(ft_substr(d->tokens, i + size,
-					ft_strlen(d->tokens) - i - size + 1), 0);
-		add_token_after(d->next, tmp);
+		i = 0;
+		while (token->tokens[i])
+		{
+			size = 1;
+			if (token->tokens[i] == '<' && token->tokens[i + 1]
+				&& token->tokens[i + 1] == '<')
+				size = 2;
+			else if (token->tokens[i] == '<')
+				size = 1;
+			else if (i++ >= 0)
+				continue ;
+			token = split_token(token, i, size);
+			break ;
+		}
+		token = token->next;
 	}
-	d->tokens = ft_strrealloc(d->tokens, pos);
-	return (d->next);
+	return (1);
 }

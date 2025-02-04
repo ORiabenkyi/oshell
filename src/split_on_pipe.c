@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/01 12:23:37 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:59:54 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ int	split_on_pipe(t_data *data)
 				symbol = '|';
 			else if (i++ >= 0)
 				continue ;
-			data->piped = 1;
-			token = split_token(token, i, symbol);
+			data->piped++;
+			token = split_token(token, i, 1);
 			break ;
 		}
 		token = token->next;
 	}
-	ft_printf("SPLITED on pipe\n");
 	return (1);
 }

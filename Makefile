@@ -6,7 +6,7 @@
 #    By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 12:53:01 by oriabenk          #+#    #+#              #
-#    Updated: 2025/02/01 12:27:49 by oriabenk         ###   ########.fr        #
+#    Updated: 2025/02/04 14:13:28 by oriabenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,13 @@ FILES_SRC := \
 		split_on_substring.c \
 		split_on_pipe.c \
 		split_on_redirect.c \
+		split_on_herdoc.c \
 		create_list.c \
 		free_all.c \
 		add_token_after.c \
 		create_token.c \
 		split_token.c \
+		extract_token.c \
 		
 
 FILES_SRC := $(addprefix $(SRC_DIR)/, $(FILES_SRC))

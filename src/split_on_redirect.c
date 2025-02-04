@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/01 12:27:10 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:10:29 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	split_on_redirect(t_data *data)
 {
 	t_token	*token;
 	int		i;
-	char	symbol;
+	int		size;
 
 	token = data->begin_token;
 	while (token)
@@ -36,17 +36,18 @@ int	split_on_redirect(t_data *data)
 		i = 0;
 		while (token->tokens[i])
 		{
-			if (token->tokens[i] == '>')
-				symbol = '>';
-			else if (token->tokens[i] == '<')
-				symbol = '<';
+			size = 1;
+			if (token->tokens[i] == '>' && token->tokens[i + 1]
+				&& token->tokens[i + 1] == '>')
+				size = 2;
+			else if (token->tokens[i] == '>')
+				size = 1;
 			else if (i++ >= 0)
 				continue ;
-			token = split_token(token, i, symbol);
+			token = split_token(token, i, size);
 			break ;
 		}
 		token = token->next;
 	}
-	ft_printf("SPLITED\n");
 	return (1);
 }

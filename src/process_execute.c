@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/01 12:27:13 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:12:51 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	process_execute(t_data *data)
 	split_on_substring(data);
 	split_on_pipe(data);
 	split_on_redirect(data);
+	split_on_herdoc(data);
 	print_tokens(data->begin_token);
 }

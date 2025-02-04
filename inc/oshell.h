@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:13:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/01 12:27:26 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:13:13 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ void	init_list(t_data *data);
 int		split_on_substring(t_data *data);
 int		split_on_pipe(t_data *data);
 int		split_on_redirect(t_data *data);
-t_token	*split_token(t_token *data, int position, char symbol);
+int		split_on_herdoc(t_data *data);
+t_token	*extract_token(t_token *d, int pos, char symbol);
+t_token	*split_token(t_token *data, int position, int size);
 t_token	*create_list(char *string);
 t_token	*create_token(char *string, int fulls);
 t_token	*add_token_after(t_token	*list, t_token	*add_in_list);
