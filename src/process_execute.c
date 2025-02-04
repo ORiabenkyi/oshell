@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/04 14:12:51 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:32:36 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void static	print_tokens(t_token *token)
 {
 	while (token)
 	{
-		ft_printf("%s\n", token->tokens, token->full);
+		ft_printf("%s!\tpipe - %d\n", token->tokens, token->numberpipe);
 		token = token->next;
 	}
 }

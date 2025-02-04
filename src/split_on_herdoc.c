@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/04 14:12:48 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:07:03 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,20 @@ int	split_on_herdoc(t_data *data)
 	while (token)
 	{
 		i = 0;
-		while (token->tokens[i])
-		{
-			size = 1;
-			if (token->tokens[i] == '<' && token->tokens[i + 1]
-				&& token->tokens[i + 1] == '<')
-				size = 2;
-			else if (token->tokens[i] == '<')
+		if (!token->full)
+			while (token->tokens[i])
+			{
 				size = 1;
-			else if (i++ >= 0)
-				continue ;
-			token = split_token(token, i, size);
-			break ;
-		}
+				if (token->tokens[i] == '<' && token->tokens[i + 1]
+					&& token->tokens[i + 1] == '<')
+					size = 2;
+				else if (token->tokens[i] == '<')
+					size = 1;
+				else if (i++ >= 0)
+					continue ;
+				token = split_token(token, i, size);
+				break ;
+			}
 		token = token->next;
 	}
 	return (1);

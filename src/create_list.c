@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 14:37:26 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:29:53 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_token	*create_list(char *string)
 		return (NULL);
 	}
 	new_list->tokens = tokenlist;
+	new_list->full = 0;
+	new_list->numberpipe = 0;
 	new_list->next = NULL;
 	return (new_list);
 }
