@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:13:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/04 15:29:37 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:34:00 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_data
 	char		**env;
 	pid_t		pid;
 	int			piped;
+	int			heredoc;
+	int			redirect;
 	char		*user_input;
 	t_token		*begin_token;
 }	t_data;
