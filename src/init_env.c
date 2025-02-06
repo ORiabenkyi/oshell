@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/23 13:22:38 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:37:41 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	init_env(t_data *data, char **env)
 	{
 		data->env[i] = ft_strdup(env[i]);
 		if (!data->env[i])
-			return (0); //потрібна функція для очисти масива. яка повертає 0
+			return (0);
 		i++;
 	}
 	return (1);

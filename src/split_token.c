@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/04 15:23:23 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:38:17 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ t_token	*split_token(t_token *d, int pos, int size)
 		d->tokens = ft_strrealloc(d->tokens, pos);
 		add_token_after(d, tmp);
 	}
-
 	return (d->next);
 }

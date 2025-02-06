@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 11:16:49 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:36:27 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 void	exit_invalid_input(void)
 {
-	ft_fprintf(STDERR_FILENO,"wrong format\n");
+	ft_fprintf(STDERR_FILENO, "wrong format\n");
 	return ;
 }
