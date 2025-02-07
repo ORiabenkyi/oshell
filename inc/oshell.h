@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:13:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/06 14:34:00 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/07 14:34:03 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ typedef struct s_data
 	char		*user_input;
 	t_token		*begin_token;
 }	t_data;
+
+/*
+функції для запуску команд
+
+*/
+
+char	*find_path(char *cmd, char **envp);
+void	run_command(char *argv, char **envp);
 
 /*
 функції початкової ініціалізації програми

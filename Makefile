@@ -6,7 +6,7 @@
 #    By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 12:53:01 by oriabenk          #+#    #+#              #
-#    Updated: 2025/02/04 14:13:28 by oriabenk         ###   ########.fr        #
+#    Updated: 2025/02/07 14:34:40 by oriabenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,8 @@ FILES_SRC := \
 		create_token.c \
 		split_token.c \
 		extract_token.c \
+		find_path.c \
+		run_command.c \
 		
 
 FILES_SRC := $(addprefix $(SRC_DIR)/, $(FILES_SRC))
