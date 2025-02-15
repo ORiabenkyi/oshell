@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/06 12:38:02 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:29:24 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,34 @@ void	free_tokens(t_token *token)
 	}
 }
 
+/*
+очистка масива оргументів команди (можливо це буде одна строка)
+*/
+
+void	free_cmd(t_command *cmd)
+{
+	t_command	*tmp;
+
+	while (cmd)
+	{
+		tmp = cmd;
+		if (cmd->name)
+			free(cmd->name);
+		if (cmd->path)
+			free(cmd->path);
+		if (cmd->args)
+		{
+			while (*cmd->args)
+			{
+				free(*cmd->args);
+			}
+			free(cmd->args);
+		}
+		cmd = cmd->next;
+		free(tmp);
+	}
+}
+
 void	free_all(t_data *data)
 {
 	if (!data)
@@ -39,6 +67,7 @@ void	free_all(t_data *data)
 	data->piped = 0;
 	data->pid = -1;
 	free_tokens(data->begin_token);
+	free_cmd(data->cmd);
 }
 
 void	free_all_exit(t_data *data)

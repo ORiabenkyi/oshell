@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:13:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/15 13:08:29 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:54:27 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,31 @@ typedef struct s_token
 }	t_token;
 
 /*
+Структури для запуску виконання
+*/
+
+typedef struct s_io
+{
+	char	*infile_name;
+	char	*outfile_name;
+	int		fd_infile;
+	int		fd_outfile;
+	int		stdin_copy;
+	int		stdout_copy;
+}	t_io;
+
+typedef struct s_command
+{
+	char				*name;
+	char				*path;
+	char				**args;
+	int					is_piped;
+	int					*pipe_fd;
+	t_io				*io;
+	struct s_command	*next;
+}	t_command;
+
+/*
 що до чого
 env - зберігає оточення
 pid - слугує для інформації по пайпам
@@ -36,6 +61,7 @@ begin_token - початок командної строки
 stdin_copy - якщо є переадресація то тут зберігається інформація про звідки
 stdout_copy - місце про переадресацію куди
 exit_status - інформація про статус виконання команд
+cmd - зберігає лист команд (об'єднання токенів)
 */
 
 typedef struct s_data
@@ -50,15 +76,23 @@ typedef struct s_data
 	int			stdin_copy;
 	int			stdout_copy;
 	int			exit_status;
+	t_command	*cmd;
 }	t_data;
 
 /*
 функції для запуску команд
-
 */
 
 char	*find_path(char *cmd, char **envp);
 void	run_command(char *argv, char **envp);
+void	run_in_pipe(t_data *data);
+void	execute_command(t_data *data);
+
+/*
+команди що перенесені з проекту Тіони
+*/
+
+void	init_io(t_command *cmd);
 
 /*
 функції початкової ініціалізації програми
@@ -107,11 +141,11 @@ t_token	*split_token(t_token *data, int position, int size);
 t_token	*create_list(char *string);
 t_token	*create_token(char *string, int fulls);
 t_token	*add_token_after(t_token	*list, t_token	*add_in_list);
+void	make_cmd(t_data *d);
+t_data	*create_cmd(t_token	*tock, t_data *d);
 
 /*
 */
 
-void	run_in_pipe(t_data *data);
-void	execute_command(t_data *data);
 
 #endif

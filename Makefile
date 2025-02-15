@@ -6,7 +6,7 @@
 #    By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 12:53:01 by oriabenk          #+#    #+#              #
-#    Updated: 2025/02/15 13:06:05 by oriabenk         ###   ########.fr        #
+#    Updated: 2025/02/15 15:50:15 by oriabenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,22 +32,23 @@ FILES_SRC := \
 		init_data.c \
 		exit_shell.c \
 		process_execute.c \
-		is_valid_input.c \
 		exit_invalid_input.c \
-		is_opened_bracket.c \
-		is_correct_substring.c \
+		parser/is_valid_input.c \
+		parser/is_opened_bracket.c \
+		parser/is_correct_substring.c \
 		error_allocate_list.c \
 		init_list.c \
-		split_on_substring.c \
-		split_on_pipe.c \
-		split_on_redirect.c \
-		split_on_herdoc.c \
-		split_on_meta.c \
+		parser/split_on_substring.c \
+		parser/split_on_pipe.c \
+		parser/split_on_redirect.c \
+		parser/split_on_herdoc.c \
+		parser/split_on_meta.c \
+		parser/split_token.c \
+		parser/make_cmd.c \
 		create_list.c \
 		free_all.c \
 		add_token_after.c \
 		create_token.c \
-		split_token.c \
 		extract_token.c \
 		execution/find_path.c \
 		execution/run_command.c \

@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_on_herdoc.c                                  :+:      :+:    :+:   */
+/*   split_on_meta.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/06 14:33:58 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:32:27 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/oshell.h"
+#include "../../inc/oshell.h"
 
 /*
 функція утворюю лист з строками де зберігається підстроки.
 розбиття відбувається 
-	// за подвійними лапками
-	// за одинарними лапками
-	// за дужками
-	// за або (||) та (&&)
-	// за пайпами (|)
-	за перенаправленням (>>, <<, >, <)
+	metacarackters (' ', '	', '\n')
 Значення що повертається слугує для визначення що розбиття пройшло коректно
 */
-
 static int	checkstring(t_token	*t, int i)
 {
-	if (t->tokens[i] == '<' && t->tokens[i + 1] && t->tokens[i + 1] == '<')
-		return (2);
-	else if (t->tokens[i] == '<')
-		return (1);
-	return (0);
+	int	returnint;
+
+	returnint = 0;
+	if (t->tokens[i] == ' ' || t->tokens[i] == '\t' || t->tokens[i] == '\n' )
+		returnint = ft_strlen(t->tokens) - i;
+	return (returnint);
 }
 
-int	split_on_herdoc(t_data *data)
+static char	*sw(void)
 {
-	int		i;
-	int		size;
+	return (" \n\t");
+}
+
+int	split_on_meta(t_data *data)
+{
 	t_token	*token;
+	int		i;
 
 	token = data->begin_token;
 	while (token)
@@ -45,15 +44,15 @@ int	split_on_herdoc(t_data *data)
 		i = 0;
 		if (!token->full)
 		{
+			token->tokens = ft_strtrim(token->tokens, sw());
 			while (token->tokens[i])
 			{
-				size = checkstring(token, i);
-				if (!size)
+				if (!checkstring(token, i))
 				{
 					i++;
 					continue ;
 				}
-				token = split_token(token, i, size);
+				split_token(token, i, checkstring(token, i));
 				break ;
 			}
 		}

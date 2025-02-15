@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_opened_bracket.c                                :+:      :+:    :+:   */
+/*   is_correct_substring.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 11:00:23 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:31:47 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/oshell.h"
+#include "../../inc/oshell.h"
 
 /*
-функція обробляє рядок від позиції до початку
-коли рядок може бути закритий тоді (навіть до завершення строки)
-повертає 1 в іншому випадку 0 (дужки не виходить закрити)
+функція слугує для перевірки чи є строка коректною.
+вона викликається у випадку дужок і перевіряє чи мість строка
+знаки для розділення команди до дужок
 */
 
-int	is_opened_bracket(char *string, int position)
+int	is_correct_substring(char *line, int i)
 {
-	int	i;
-	int	counter;
-
-	counter = 1;
-	i = position;
-	while (i--)
-	{
-		if (string[i] == '(')
-			counter--;
-		if (string[i] == ')')
-			counter++;
-		if (counter == 0)
-			break ;
-	}
-	return (counter);
+	while (i > 0 && line[i] && ft_isspace(line[i]))
+		i--;
+	if (i >= 0 && (line[i] != '&' && line[i] != '|'))
+		return (0);
+	return (1);
 }

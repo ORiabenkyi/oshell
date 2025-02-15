@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_on_substring.c                               :+:      :+:    :+:   */
+/*   split_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/06 12:40:09 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:32:51 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/oshell.h"
+#include "../../inc/oshell.h"
 
 /*
 функція утворюю лист з строками де зберігається підстроки.
@@ -24,31 +24,27 @@
 Значення що повертається слугує для визначення що розбиття пройшло коректно
 */
 
-int	split_on_substring(t_data *data)
+t_token	*split_token(t_token *d, int pos, int size)
 {
-	t_token	*token;
 	int		i;
-	char	symbol;
+	t_token	*tmp;
 
-	token = data->begin_token;
-	while (token)
+	if (d->tokens[pos + size] != '\0')
 	{
-		i = 0;
-		if (!token->full)
-		{
-			while (token->tokens[i])
-			{
-				if (token->tokens[i] == '\'')
-					symbol = '\'';
-				else if (token->tokens[i] == '\"')
-					symbol = '\"';
-				else if (i++ >= 0)
-					continue ;
-				token = extract_token(token, i, symbol);
-				break ;
-			}
-		}
-		token = token->next;
+		tmp = create_token(ft_substr(d->tokens, pos + size,
+					ft_strlen(d->tokens) - pos - size + 1), 0);
+		add_token_after(d, tmp);
 	}
-	return (1);
+	if (pos == 0)
+	{
+		d->tokens = ft_strrealloc(d->tokens, size);
+		return (d);
+	}
+	else
+	{
+		tmp = create_token(ft_substr(d->tokens, pos, size), 0);
+		d->tokens = ft_strrealloc(d->tokens, pos);
+		add_token_after(d, tmp);
+	}
+	return (d->next);
 }

@@ -1,58 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_on_meta.c                                    :+:      :+:    :+:   */
+/*   split_on_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/15 14:01:12 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:32:36 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/oshell.h"
+#include "../../inc/oshell.h"
 
 /*
 функція утворюю лист з строками де зберігається підстроки.
 розбиття відбувається 
-	metacarackters (' ', '	', '\n')
+	// за подвійними лапками
+	// за одинарними лапками
+	// за дужками
+	// за або (||) та (&&)
+	за пайпами (|)
+	// за перенаправленням (>>, <<, >, <)
 Значення що повертається слугує для визначення що розбиття пройшло коректно
 */
-static int	checkstring(t_token	*t, int i)
-{
-	int	returnint;
 
-	returnint = 0;
-	if (t->tokens[i] == ' ' || t->tokens[i] == '\t' || t->tokens[i] == '\n' )
-		returnint = ft_strlen(t->tokens) - i;
-	return (returnint);
-}
-
-static char	*sw(void)
-{
-	return (" \n\t");
-}
-
-int	split_on_meta(t_data *data)
+int	split_on_pipe(t_data *data)
 {
 	t_token	*token;
 	int		i;
+	char	symbol;
 
 	token = data->begin_token;
 	while (token)
 	{
 		i = 0;
+		token->numberpipe = data->piped;
 		if (!token->full)
 		{
-			token->tokens = ft_strtrim(token->tokens, sw());
 			while (token->tokens[i])
 			{
-				if (!checkstring(token, i))
-				{
-					i++;
+				if (token->tokens[i] == '|')
+					symbol = '|';
+				else if (i++ >= 0)
 					continue ;
-				}
-				split_token(token, i, checkstring(token, i));
+				data->piped++;
+				token = split_token(token, i, 1);
 				break ;
 			}
 		}

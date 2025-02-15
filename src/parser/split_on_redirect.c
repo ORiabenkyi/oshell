@@ -1,50 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_token.c                                      :+:      :+:    :+:   */
+/*   split_on_redirect.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/06 12:38:17 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:32:41 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/oshell.h"
+#include "../../inc/oshell.h"
 
 /*
 функція утворюю лист з строками де зберігається підстроки.
 розбиття відбувається 
-	за подвійними лапками
-	за одинарними лапками
-	за дужками
-	за або (||) та (&&)
-	за пайпами (|)
+	// за подвійними лапками
+	// за одинарними лапками
+	// за дужками
+	// за або (||) та (&&)
+	// за пайпами (|)
 	за перенаправленням (>>, <<, >, <)
 Значення що повертається слугує для визначення що розбиття пройшло коректно
 */
-
-t_token	*split_token(t_token *d, int pos, int size)
+static int	checkstring(t_token	*t, int i)
 {
-	int		i;
-	t_token	*tmp;
+	if (t->tokens[i] == '>' && t->tokens[i + 1] && t->tokens[i + 1] == '>')
+		return (2);
+	else if (t->tokens[i] == '>')
+		return (1);
+	return (0);
+}
 
-	if (d->tokens[pos + size] != '\0')
+int	split_on_redirect(t_data *data)
+{
+	t_token	*token;
+	int		i;
+	int		size;
+
+	token = data->begin_token;
+	while (token)
 	{
-		tmp = create_token(ft_substr(d->tokens, pos + size,
-					ft_strlen(d->tokens) - pos - size + 1), 0);
-		add_token_after(d, tmp);
+		i = 0;
+		if (!token->full)
+		{
+			while (token->tokens[i])
+			{
+				size = checkstring(token, i);
+				if (!size)
+				{
+					i++;
+					continue ;
+				}
+				token = split_token(token, i, size);
+				break ;
+			}
+		}
+		token = token->next;
 	}
-	if (pos == 0)
-	{
-		d->tokens = ft_strrealloc(d->tokens, size);
-		return (d);
-	}
-	else
-	{
-		tmp = create_token(ft_substr(d->tokens, pos, size), 0);
-		d->tokens = ft_strrealloc(d->tokens, pos);
-		add_token_after(d, tmp);
-	}
-	return (d->next);
+	return (1);
 }

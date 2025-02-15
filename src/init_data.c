@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/06 14:34:24 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:21:48 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int	init_data(t_data *data, char **env)
 	data->heredoc = 0;
 	data->redirect = 0;
 	data->begin_token = NULL;
+	data->cmd = NULL;
 	return (1);
 }
