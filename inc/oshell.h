@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:13:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/15 17:54:27 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/16 15:15:03 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_command
 	char				*path;
 	char				**args;
 	int					is_piped;
+	int					is_heredoc;
+	int					is_redirect;
+	char				*eof;
 	int					*pipe_fd;
 	t_io				*io;
 	struct s_command	*next;
@@ -142,7 +145,7 @@ t_token	*create_list(char *string);
 t_token	*create_token(char *string, int fulls);
 t_token	*add_token_after(t_token	*list, t_token	*add_in_list);
 void	make_cmd(t_data *d);
-t_data	*create_cmd(t_token	*tock, t_data *d);
+t_token	*create_cmd(t_token	*tock, t_data *d);
 
 /*
 */

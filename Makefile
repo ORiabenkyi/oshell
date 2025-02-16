@@ -6,7 +6,7 @@
 #    By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 12:53:01 by oriabenk          #+#    #+#              #
-#    Updated: 2025/02/15 15:50:15 by oriabenk         ###   ########.fr        #
+#    Updated: 2025/02/16 12:08:14 by oriabenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ FILES_SRC := \
 		parser/split_on_meta.c \
 		parser/split_token.c \
 		parser/make_cmd.c \
+		parser/create_cmd.c \
 		create_list.c \
 		free_all.c \
 		add_token_after.c \

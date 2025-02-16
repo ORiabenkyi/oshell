@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_cmd.c                                         :+:      :+:    :+:   */
+/*   make_cmd copy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/16 14:21:59 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/16 12:07:46 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 функція утворюю лист з вже підготовленими командами для подальшої роботи з ними
 */
 
-void	make_cmd(t_data *d)
+t_token	*create_cmd(t_data *d)
 {
 	int		npipe;
 	t_token	*tmp;
@@ -29,7 +29,7 @@ void	make_cmd(t_data *d)
 		tmp = create_cmd(tmp, d);
 		while (tmp && tmp->numberpipe < npipe)
 		{
-			//ft_printf("%s!\t!", tmp->tokens);
+			ft_printf("%s!\t!", tmp->tokens);
 			tmp = tmp->next;
 		}
 		ft_printf("\n");

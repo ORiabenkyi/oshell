@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/15 18:15:50 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/02/16 15:12:46 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	is_from_file(t_token	*tock)
 	return (0);
 }
 
-t_data	*create_cmd(t_token	*tock, t_data *d)
+t_token	*create_cmd(t_token	*tock, t_data *d)
 {
 	int			nnode;
 	t_token		*tmp;
@@ -69,4 +69,5 @@ t_data	*create_cmd(t_token	*tock, t_data *d)
 			cmd->is_piped = 0;
 		tmp = tmp->next;
 	}
+	return (tmp);
 }
