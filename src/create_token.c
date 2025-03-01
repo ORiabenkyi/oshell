@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/01/25 18:08:46 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:05:38 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ t_token	*create_token(char *string, int fulls)
 	new_list->tokens = tokenlist;
 	new_list->full = fulls;
 	new_list->next = NULL;
+	new_list->is_heredoc = 0;
+	new_list->is_variable = 0;
 	return (new_list);
 }

@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:13:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/16 18:13:41 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:08:48 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ typedef struct s_token
 	char			*tokens;
 	int				full;
 	int				numberpipe;
+	int				is_heredoc;
+	int				is_variable;
+	int				is_quotes;
 	struct s_token	*next;
 }	t_token;
 

@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/16 14:08:48 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:02:04 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	process_execute(t_data *data)
 	split_on_redirect(data);
 	split_on_herdoc(data);
 	split_on_meta(data);
-	make_cmd(data);
+	extend_heredoc(data);
+	//make_cmd(data);
 	print_tokens(data->begin_token);
 	if (data->piped)
 		run_in_pipe(data);
