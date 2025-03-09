@@ -6,7 +6,7 @@
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:13:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/03/01 14:08:48 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/03/09 13:47:22 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ t_token	*create_token(char *string, int fulls);
 t_token	*delete_token(t_token *token);
 t_token	*add_token_after(t_token	*list, t_token	*add_in_list);
 void	make_cmd(t_data *data);
-void	*mark_data(t_data *d);
+void	mark_data(t_data *d);
 t_token	*create_cmd(t_token	*tock, t_data *data);
 
 /*

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_cmd copy.c                                    :+:      :+:    :+:   */
+/*   extend_variable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oriabenk <oriabenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:42:17 by oriabenk          #+#    #+#             */
-/*   Updated: 2025/02/16 12:07:46 by oriabenk         ###   ########.fr       */
+/*   Updated: 2025/03/09 13:50:41 by oriabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	extend_variable(t_data *d)
 	tmp = d->begin_token;
 	while (tmp)
 	{
-		ft_printf("%s\n",tmp->tokens);
 		tmp = tmp->next;
 	}
 }
