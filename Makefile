@@ -44,8 +44,12 @@ FILES_SRC := \
 		parser/split_on_herdoc.c \
 		parser/split_on_meta.c \
 		parser/split_token.c \
+		parser/extend_variable.c \
+		parser/extend_heredoc.c \
 		parser/make_cmd.c \
 		parser/create_cmd.c \
+		parser/mark_data.c \
+		utils/delete_token.c \
 		create_list.c \
 		free_all.c \
 		add_token_after.c \

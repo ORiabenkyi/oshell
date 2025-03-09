@@ -12,21 +12,44 @@
 
 #include "../inc/oshell.h"
 
+/* 
+Допоміжні функції
+print_tokens - друкує строки
+split_data   - розбиває строку на складові
+extend_data  - робить підстановки в складових
+*/
+void static	print_tokens(t_token *token)
+{
+	while (token)
+	{
+		if (token->extend)
+			ft_printf("token - %s!\textend - %s\tpipe - %d\n", token->tokens,token->extend, token->numberpipe);
+		else
+			ft_printf("%s!\tpipe - %d\n", token->tokens, token->numberpipe);
+		token = token->next;
+	}
+}
+
+void static	split_data(t_data *data)
+{
+	split_on_substring(data);
+	split_on_pipe(data);
+	split_on_redirect(data);
+	split_on_herdoc(data);
+	split_on_meta(data);
+}
+
+void static	extend_data(t_data *data)
+{
+	extend_heredoc(data);
+	extend_variable(data);
+}
 /*
 до цієє функції потрапляє структура з строкою введення та оточенням.
 функція має перевірити строку
 	 сгенерувати помилку якщо строка некоректна
 	 чи передати на виконання якщо строка коректна
 */
-
-void static	print_tokens(t_token *token)
-{
-	while (token)
-	{
-		ft_printf("%s!\tpipe - %d\n", token->tokens, token->numberpipe);
-		token = token->next;
-	}
-}
 
 void	process_execute(t_data *data)
 {
@@ -35,14 +58,11 @@ void	process_execute(t_data *data)
 	init_list(data);
 	if (!data->begin_token)
 		return ;
-	split_on_substring(data);
-	split_on_pipe(data);
-	split_on_redirect(data);
-	split_on_herdoc(data);
-	split_on_meta(data);
-	extend_heredoc(data);
+	split_data(data);
+	mark_data(data);
+	extend_data(data);
 	//make_cmd(data);
-	print_tokens(data->begin_token);
+	//print_tokens(data->begin_token);
 	if (data->piped)
 		run_in_pipe(data);
 	else

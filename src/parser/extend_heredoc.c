@@ -25,28 +25,19 @@ static int	checkstring(t_token	*t, int i)
 	return (0);
 }
 
+/*
+функція має пройтись по всьому вводу та замінити heredoc на введену строку,
+при цьому ми маємо обробляти сигнал зупинки
+*/
 int	extend_heredoc(t_data *data)
 {
-	int		i;
 	t_token	*token;
 
 	token = data->begin_token;
 	while (token)
 	{
-		i = 0;
 		if (!token->full)
 		{
-			while (token->tokens[i])
-			{
-				size = checkstring(token, i);
-				if (!size)
-				{
-					i++;
-					continue ;
-				}
-				token = split_token(token, i, size);
-				break ;
-			}
 		}
 		token = token->next;
 	}

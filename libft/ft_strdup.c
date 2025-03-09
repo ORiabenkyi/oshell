@@ -15,13 +15,11 @@
 char	*ft_strdup(const char *income_str)
 {
 	int		length;
-	int		counter;
 	char	*outcome_str;
 
 	if (income_str == NULL)
 		return (NULL);
 	length = ft_strlen(income_str);
-	counter = 0;
 	outcome_str = malloc((length + 1) * sizeof(*outcome_str));
 	if (outcome_str == NULL)
 		return (NULL);

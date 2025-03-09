@@ -16,14 +16,20 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 
+# define HEREDOC_PROMPT "<<> "
+# define NORMAL_PROMPT "ohell> "
+
 typedef struct s_token
 {
 	char			*tokens;
+	char			*extend;
 	int				full;
 	int				numberpipe;
 	int				is_heredoc;
 	int				is_variable;
 	int				is_quotes;
+	int				is_file;
+	int				is_redirect;
 	struct s_token	*next;
 }	t_token;
 
@@ -156,12 +162,15 @@ t_token	*extract_token(t_token *d, int pos, char symbol);
 t_token	*split_token(t_token *data, int position, int size);
 t_token	*create_list(char *string);
 t_token	*create_token(char *string, int fulls);
+t_token	*delete_token(t_token *token);
 t_token	*add_token_after(t_token	*list, t_token	*add_in_list);
-void	make_cmd(t_data *d);
-t_token	*create_cmd(t_token	*tock, t_data *d);
+void	make_cmd(t_data *data);
+void	*mark_data(t_data *d);
+t_token	*create_cmd(t_token	*tock, t_data *data);
 
 /*
+
 */
-
-
+void	extend_variable(t_data *data);
+int		extend_heredoc(t_data *data);
 #endif

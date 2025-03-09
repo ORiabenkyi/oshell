@@ -13,7 +13,8 @@
 #include "../inc/oshell.h"
 
 /*
-функція утворюю лист
+функція утворюю ноду для листа
+після цього заповнює 0 всі поля окрім строки та посилання на наступний елемент
 тут можливо змінити поведінку
 у випадку коли не змогли виділити пам'ять для листа
 	зараз   - повертає помилку
@@ -28,6 +29,7 @@ t_token	*create_token(char *string, int fulls)
 	new_list = (t_token *)malloc(1 * sizeof(t_token));
 	if (new_list == NULL)
 		return (NULL);
+	ft_bzero(new_list,sizeof(t_token));
 	tokenlist = ft_strdup(string);
 	if (tokenlist == NULL)
 	{
@@ -37,7 +39,5 @@ t_token	*create_token(char *string, int fulls)
 	new_list->tokens = tokenlist;
 	new_list->full = fulls;
 	new_list->next = NULL;
-	new_list->is_heredoc = 0;
-	new_list->is_variable = 0;
 	return (new_list);
 }
