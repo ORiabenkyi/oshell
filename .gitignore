@@ -56,6 +56,7 @@ libft.a
 .vscode
 a.out
 *.o
+oshell
 minishell
 infile
 outfile
