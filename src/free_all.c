@@ -23,11 +23,11 @@ void	free_tokens(t_token *token)
 	while (token)
 	{
 		tmp = token;
-		if (token->tokens)
-			free(token->tokens);
-		if (token->extend)
-			free(token->extend);
 		token = token->next;
+		if (tmp->tokens)
+			free(tmp->tokens);
+		if (tmp->extend)
+			free(tmp->extend);
 		free(tmp);
 	}
 }

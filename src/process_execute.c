@@ -62,9 +62,9 @@ void	process_execute(t_data *data)
 	mark_data(data);
 	extend_data(data);
 	//make_cmd(data);
-	//print_tokens(data->begin_token);
-	if (data->piped)
-		run_in_pipe(data);
-	else
-		execute_command(data);
+	print_tokens(data->begin_token);
+	// if (data->piped)
+	// 	run_in_pipe(data);
+	// else
+	// 	execute_command(data);
 }

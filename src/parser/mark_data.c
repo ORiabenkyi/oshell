@@ -20,7 +20,10 @@ void static	mark_heredoc(t_token *token)
 {
 	token->is_heredoc = 1;
 	if (token->next)
+	{
 		token->extend = token->next->tokens;
+		token->next = delete_token(token->next);
+	}
 }
 
 void static	mark_redirect(t_token *token, t_data *d, int type)
@@ -38,7 +41,8 @@ void static	mark_redirect(t_token *token, t_data *d, int type)
 	{
 		if (token->next)
 			token->extend = token->next->tokens;
-		token->next = delete_token(token->next);
+		if (token->next)
+			token->next = delete_token(token->next);
 		token->is_redirect = type;
 	}
 }

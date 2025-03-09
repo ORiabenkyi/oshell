@@ -20,12 +20,12 @@ t_token	*delete_token(t_token *token)
 {
 	t_token	*tmp;
 
-	tmp = token;
-	token = token->next;
-	// if (tmp->tokens)
-	// 	free(tmp->tokens);
-	// if (tmp->extend)
-	// 	free(tmp->extend);
-	// free(tmp);
-	return (token);
+	tmp = token->next;
+	if (token->tokens)
+		free(token->tokens);
+	if (tmp->extend)
+		free(token->extend);
+	free(token);
+	token = NULL;
+	return (tmp);
 }

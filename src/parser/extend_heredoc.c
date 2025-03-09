@@ -13,19 +13,6 @@
 #include "../../inc/oshell.h"
 
 /*
-функція обробляє лист та замінює знаки << на виклик текст
-*/
-
-static int	checkstring(t_token	*t, int i)
-{
-	if (t->tokens[i] == '<' && t->tokens[i + 1] && t->tokens[i + 1] == '<')
-		return (2);
-	else if (t->tokens[i] == '<')
-		return (1);
-	return (0);
-}
-
-/*
 функція має пройтись по всьому вводу та замінити heredoc на введену строку,
 при цьому ми маємо обробляти сигнал зупинки
 */
@@ -37,8 +24,7 @@ int	extend_heredoc(t_data *data)
 	while (token)
 	{
 		if (!token->full)
-		{
-		}
+			;
 		token = token->next;
 	}
 	return (1);

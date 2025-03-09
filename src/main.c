@@ -41,7 +41,7 @@ int	main(int counter, char *arg[], char *envr[])
 		{
 			add_history(data.user_input);
 			process_execute(&data);
-			free_all(&data);
+			//free_all(&data);
 		}
 	}
 	exit_shell(&data, 0);
